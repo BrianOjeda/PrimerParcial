@@ -9,7 +9,7 @@ if(isset($_SESSION['registrado'])){  ?>
       <form class="form-ingreso" onsubmit="Guardar();return false">
         <h2 class="form-ingreso-heading">Votacion</h2>
         <label for="cantante" class="sr-only">provincia</label>
-        <input type="text"  minlength="6"  id="provincia" title="Se necesita un nombre de cantante" class="form-control" placeholder="provincia" required="" autofocus="">
+        <input type="text"  minlength="1"  id="provincia" title="Se necesita un nombre de cantante" class="form-control" placeholder="provincia" required="" autofocus="">
         <select id="presidente">
           <option>
             Scioli

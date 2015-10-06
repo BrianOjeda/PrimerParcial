@@ -31,13 +31,11 @@ switch ($queHago) {
 
 		break;
 	case 'Guardar':
-
-	
-			echo $_POST['provincia'].
-			$_POST['presidente'].
-			$_POST['sexo'].
-			$_POST['dni'];
-			
+			$votacion=new votacion($_POST['provincia'],$_POST['dni'],$_POST['sexo'],$_POST['presidente']);
+			$contador= $votacion->insertar();
+			session_start();
+			session_destroy();
+			echo $contador;
 
 		break;
 	case 'TraerCD':

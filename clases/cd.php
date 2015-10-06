@@ -60,10 +60,9 @@ class votacion
 	 public function insertar()
 	 {
 				$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-				$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into cds (titel,interpret,jahr)values('$this->titulo','$this->cantante','$this->año')");
+				$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into votacion (provincia,dni,sexo,presidente)values('$this->provincia','$this->dni','$this->sexo','$this->presidente')");
 				$consulta->execute();
-				return $objetoAccesoDato->RetornarUltimoIdInsertado();
-				
+				return $objetoAccesoDato->RetornarUltimoIdInsertado();		
 
 	 }
 

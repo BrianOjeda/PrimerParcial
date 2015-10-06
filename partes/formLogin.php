@@ -14,7 +14,7 @@ if(!isset($_SESSION['registrado'])){  ?>
         <label for="dni" class="sr-only">Correo electrónico</label>
                 <input type="text" id="correo" minlength="7" maxlength="8" class="form-control" placeholder="Ingrese dni" required="" autofocus="" value="<?php  if(isset($_COOKIE["registro"])){echo $_COOKIE["registro"];}?>">
         <label for="clave" class="sr-only">Clave</label>
-        <input type="password" id="clave" minlength="7" maxlength="8"class="form-control" placeholder="ingrese clave" required="">
+        <input type="password" id="clave" minlength="4" maxlength="8"class="form-control" placeholder="ingrese clave" required="">
         <div class="checkbox">
           <label>
             <input type="checkbox" id="recordarme" checked> Recordame

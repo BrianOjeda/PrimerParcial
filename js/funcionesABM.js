@@ -64,6 +64,7 @@ function Guardar()
 	funcionAjax.done(function(retorno){
 			//Mostrar("MostrarGrilla");
 		$("#Contador").html("cantidad de agregados "+ retorno);	
+		Mostrar("MostrarLogin");
 		
 	});
 	funcionAjax.fail(function(retorno){	
