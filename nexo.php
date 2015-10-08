@@ -23,6 +23,9 @@ switch ($queHago) {
 	case 'MostrarFormAlta':
 			include("partes/formCd.php");
 		break;
+	case 'VerEnMapa':
+			include("partes/formMapaGoogle.php");
+		break;
 	case 'BorrarCD':
 			$cd = new votacion();
 			$cd->id=$_POST['id'];
@@ -32,19 +35,40 @@ switch ($queHago) {
 		break;
 	case 'Guardar':
 			$votacion=new votacion();
-			
-			$votacion->provincia=$_POST['provincia'];
- 			$votacion->dni=$_POST['dni'];
-  			$votacion->sexo=$_POST['sexo'];
-  			$votacion->presidente=$_POST['presidente'];
-			$contador= $votacion->insertar();
 			session_start();
+
+			if(!isset($_POST['id']))
+			{
+				$votacion->id=$_POST['id'];
+				$votacion->provincia=$_POST['provincia'];
+	 			$votacion->dni=$_SESSION['editar'];
+	  			$votacion->sexo=$_POST['sexo'];
+	  			$votacion->presidente=$_POST['presidente'];
+	  			$votacion->domicilio=$_POST['domicilio'];
+	  			$votacion->localidad=$_POST['localidad'];
+				$contador= $votacion->insertar();
+			}
+			else
+			{
+				$votacion->provincia=$_POST['provincia'];
+	 			$votacion->dni=$_SESSION['registrado'];
+	  			$votacion->sexo=$_POST['sexo'];
+	  			$votacion->presidente=$_POST['presidente'];
+	  			$votacion->domicilio=$_POST['domicilio'];
+	  			$votacion->localidad=$_POST['localidad'];
+				$contador= $votacion->insertar();
+
+			}
 			session_destroy();
 			echo $contador;
 
 		break;
 	case 'TraerCD':
-			$cd = votacion::TraerUnCd($_POST['id']);		
+			session_start();
+			
+			$cd = votacion::TraerUnCd($_POST['id']);
+			
+			$_SESSION['editar']=$cd->dni;	
 			echo json_encode($cd) ;
 
 		break;

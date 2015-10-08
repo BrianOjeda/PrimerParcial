@@ -11,7 +11,7 @@ function BorrarCD(idParametro)
 	});
 	funcionAjax.done(function(retorno){
 		Mostrar("MostrarGrilla");
-		$("#informe").html("cantidad de eliminados "+ retorno);	
+		//$("#informe").html("cantidad de eliminados "+ retorno);	
 		
 	});
 	funcionAjax.fail(function(retorno){	
@@ -21,6 +21,8 @@ function BorrarCD(idParametro)
 
 function EditarCD(idParametro)
 {
+	//alert("lalal");
+	Mostrar("MostrarFormAlta");
 	var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"post",
@@ -30,17 +32,24 @@ function EditarCD(idParametro)
 		}
 	});
 	funcionAjax.done(function(retorno){
+		//alert(retorno);
 		var cd =JSON.parse(retorno);	
 		//$("#idCD").val(cd.id);
+		
 		$("#presidente").val(cd.presidente);
 		$("#provincia").val(cd.provincia);
 		$("#sexo").val(cd.sexo);
 		$("#dni").val(cd.dni);
+		$("#domicilio").val(cd.domicilio);
+		$("#localidad").val(cd.localidad);
+		$("#id").val(cd.id);
+
 	});
 	funcionAjax.fail(function(retorno){	
-		$("#informe").html(retorno.responseText);	
+		//$("#informe").html(retorno.responseText);	
+
 	});	
-	Mostrar("MostrarFormAlta");
+	
 }
 
 function Guardar()
@@ -50,6 +59,8 @@ function Guardar()
 		var presidente=$("#presidente").val();
 		var sexo=$("#sexo").val();
 		var dni=$("#dni").val();
+		var domicilio=$("#domicilio").val();
+		var localidad=$("#localidad").val();
 
 		var funcionAjax=$.ajax({
 		url:"nexo.php",
@@ -59,7 +70,9 @@ function Guardar()
 			provincia:provincia,
 			presidente:presidente,
 			sexo:sexo,
-			dni:dni	
+			dni:dni,
+			domicilio:domicilio,
+			localidad:localidad
 		}
 	});
 	funcionAjax.done(function(retorno){

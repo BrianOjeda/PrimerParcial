@@ -6,7 +6,8 @@ class votacion
  	public $dni;
   	public $sexo;
   	public $presidente;
-
+  	public $domicilio;
+  	public $localidad;
 
 
 
@@ -51,7 +52,9 @@ class votacion
 				set provincia='$this->provincia',
 				dni='$this->dni',
 				sexo='$this->sexo'
-				presidente='$this->presidente'
+				presidente='$this->presidente',
+				domicilio='$this->domicilio',
+				localidad='$this->localidad'
 				WHERE id='$this->id'");
 			return $consulta->execute();
 
@@ -61,7 +64,7 @@ class votacion
 	 public function insertar()
 	 {
 				$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-				$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into votacion (provincia,dni,sexo,presidente)values('$this->provincia','$this->dni','$this->sexo','$this->presidente')");
+				$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into votacion (provincia,Dni,sexo,presidente,domicilio,localidad)values('$this->provincia','$this->dni','$this->sexo','$this->presidente','$this->domicilio','$this->localidad')");
 				$consulta->execute();
 				return $objetoAccesoDato->RetornarUltimoIdInsertado();		
 
@@ -98,7 +101,7 @@ class votacion
 
 	 	if($this->id>0)
 	 		{
-	 			$this->ModificarCdParametros();
+	 			$this->ModificarCd();
 	 		}else {
 	 			$this->insertar();
 	 		}
@@ -110,7 +113,7 @@ class votacion
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		
-			$consulta =$objetoAccesoDato->RetornarConsulta("select id as id,provincia as provincia,dni as dni,sexo as sexo,presidente as presidente from votacion");
+			$consulta =$objetoAccesoDato->RetornarConsulta("select id as id,provincia as provincia,dni as dni,sexo as sexo,presidente as presidente,localidad as localidad,domicilio as domicilio from votacion");
 			$consulta->execute();			
 			return $consulta->fetchAll(PDO::FETCH_CLASS, "votacion");		
 	}
@@ -118,7 +121,7 @@ class votacion
 	public static function TraerUnCd($id) 
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta =$objetoAccesoDato->RetornarConsulta("select id as id,provincia as provincia,dni as dni,sexo as sexo,presidente as presidente from votacion where id = $id");
+			$consulta =$objetoAccesoDato->RetornarConsulta("select id as id,provincia as provincia,dni as dni,sexo as sexo,presidente as presidente,localidad as localidad,domicilio as domicilio from votacion where id = $id");
 			$consulta->execute();
 			$cdBuscado= $consulta->fetchObject('votacion');
 			return $cdBuscado;				

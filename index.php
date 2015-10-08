@@ -1,4 +1,4 @@
-<!doctype html>
+
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -21,6 +21,12 @@
 <script type="text/javascript" src="js/funcionesAjax.js"></script>
 <script type="text/javascript" src="js/funcionesLogin.js"></script>
 <script type="text/javascript" src="js/funcionesABM.js"></script>
+
+<!-- Estos archivos son para geolocalizacion -->
+<script type="text/javascript" src="js/geolocalizacionCommon.js"></script>
+<script type="text/javascript" src="js/moduloGeolocalizacion.js"></script>
+<script type="text/javascript" src="js/funcionesMapa.js"></script>
+
 
 </head>
 
