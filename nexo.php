@@ -24,14 +24,19 @@ switch ($queHago) {
 			include("partes/formCd.php");
 		break;
 	case 'BorrarCD':
-			$cd = new cd();
+			$cd = new votacion();
 			$cd->id=$_POST['id'];
 			$cantidad=$cd->BorrarCd();
 			echo $cantidad;
 
 		break;
 	case 'Guardar':
-			$votacion=new votacion($_POST['provincia'],$_POST['dni'],$_POST['sexo'],$_POST['presidente']);
+			$votacion=new votacion();
+			
+			$votacion->provincia=$_POST['provincia'];
+ 			$votacion->dni=$_POST['dni'];
+  			$votacion->sexo=$_POST['sexo'];
+  			$votacion->presidente=$_POST['presidente'];
 			$contador= $votacion->insertar();
 			session_start();
 			session_destroy();
@@ -39,7 +44,7 @@ switch ($queHago) {
 
 		break;
 	case 'TraerCD':
-			$cd = cd::TraerUnCd($_POST['id']);		
+			$cd = votacion::TraerUnCd($_POST['id']);		
 			echo json_encode($cd) ;
 
 		break;

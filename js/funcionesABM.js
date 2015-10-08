@@ -31,10 +31,11 @@ function EditarCD(idParametro)
 	});
 	funcionAjax.done(function(retorno){
 		var cd =JSON.parse(retorno);	
-		$("#idCD").val(cd.id);
-		$("#cantante").val(cd.cantante);
-		$("#titulo").val(cd.titulo);
-		$("#anio").val(cd.año);
+		//$("#idCD").val(cd.id);
+		$("#presidente").val(cd.presidente);
+		$("#provincia").val(cd.provincia);
+		$("#sexo").val(cd.sexo);
+		$("#dni").val(cd.dni);
 	});
 	funcionAjax.fail(function(retorno){	
 		$("#informe").html(retorno.responseText);	

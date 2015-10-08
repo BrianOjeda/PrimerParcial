@@ -10,19 +10,19 @@ class votacion
 
 
 
-  	public function __construct($prov,$dn,$sex,$presi)
-  	{
-		$this->provincia=$prov;
-		$this->dni=$dn;
-		$this->sexo=$sex;
-		$this->presidente=$presi;
-  	}
+  // 	public function __construct($prov,$dn,$sex,$presi)
+  // 	{
+		// $this->provincia=$prov;
+		// $this->dni=$dn;
+		// $this->sexo=$sex;
+		// $this->presidente=$presi;
+  // 	}
   	public function BorrarCd()
 	 {
 	 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta("
 				delete 
-				from cds 				
+				from votacion 				
 				WHERE id=:id");	
 				$consulta->bindValue(':id',$this->id, PDO::PARAM_INT);		
 				$consulta->execute();
@@ -47,10 +47,11 @@ class votacion
 
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta("
-				update cds 
-				set titel='$this->titulo',
-				interpret='$this->cantante',
-				jahr='$this->año'
+				update votacion 
+				set provincia='$this->provincia',
+				dni='$this->dni',
+				sexo='$this->sexo'
+				presidente='$this->presidente'
 				WHERE id='$this->id'");
 			return $consulta->execute();
 
@@ -108,17 +109,18 @@ class votacion
   	public static function TraerTodoLosCds()
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta =$objetoAccesoDato->RetornarConsulta("select id,titel as titulo, interpret as cantante,jahr as año from cds");
+		
+			$consulta =$objetoAccesoDato->RetornarConsulta("select id as id,provincia as provincia,dni as dni,sexo as sexo,presidente as presidente from votacion");
 			$consulta->execute();			
-			return $consulta->fetchAll(PDO::FETCH_CLASS, "cd");		
+			return $consulta->fetchAll(PDO::FETCH_CLASS, "votacion");		
 	}
 
 	public static function TraerUnCd($id) 
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta =$objetoAccesoDato->RetornarConsulta("select id, titel as titulo, interpret as cantante,jahr as año from cds where id = $id");
+			$consulta =$objetoAccesoDato->RetornarConsulta("select id as id,provincia as provincia,dni as dni,sexo as sexo,presidente as presidente from votacion where id = $id");
 			$consulta->execute();
-			$cdBuscado= $consulta->fetchObject('cd');
+			$cdBuscado= $consulta->fetchObject('votacion');
 			return $cdBuscado;				
 
 			
